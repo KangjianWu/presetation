@@ -1,58 +1,44 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.generate-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.generate-btn:hover {
-  background-color: #21a1f1;
-}
-
-.App-main {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 80px);
-  background-color: #f0f0f0;
-}
+@import 'animate.css';
 
 .presentation {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slide {
-  width: 80%;
-  height: 80%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: black;
-  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.presentation.transitioning {
+  pointer-events: none;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* 使用 opacity 过渡 */
+}
+
+.slide.animate__fadeIn {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .slide-content-container {
@@ -66,53 +52,28 @@
 }
 
 .slide-content {
-  z-index: 2;
   color: white;
   font-size: 2rem;
   text-align: center;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .slide-line {
   margin: 10px 0;
   font-size: 2rem;
   color: #fff;
-  animation: fadeInUp 1s ease-in-out;
-  animation-fill-mode: both;
+  animation-fill-mode: both; /* 保持动画结束后的状态 */
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+.animate__fadeInUp {
+  --animate-duration: 1s;
 }
 
-@keyframes fadeInUp {
-  from {
-    transform: translate3d(0, 40px, 0);
-    opacity: 0;
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
-@keyframes zoomIn {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+.animate__zoomIn {
+  --animate-duration: 1s;
 }
 
 @keyframes rotateIn {
@@ -177,22 +138,14 @@
   }
 }
 
-.slide-content.animate__fadeInUp {
-  animation: fadeInUp 1s ease-in-out;
-}
-
-.slide-content.animate__zoomIn {
-  animation: zoomIn 1s ease-in-out;
-}
-
-.slide-content.animate__rotateIn {
+.slide-line.animate__rotateIn {
   animation: rotateIn 1s ease-in-out;
 }
 
-.slide-content.animate__lightSpeedIn {
+.slide-line.animate__lightSpeedIn {
   animation: lightSpeedIn 1s ease-in-out;
 }
 
-.slide-content.animate__bounceIn {
+.slide-line.animate__bounceIn {
   animation: bounceIn 1s ease-in-out;
 }
